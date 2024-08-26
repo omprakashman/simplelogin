@@ -11,6 +11,8 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('home')  # Redirect to a home page or another URL
+        else :
+                return render(request, 'error.html', {'form': form})
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
