@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% load static %} <!-- This line is required to use the static template tag -->
+
+
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
         body {
             font-family: Verdana, sans-serif;
-            background-color: skyblue;
+            background-image: url("{% static 'images/backg.png' %}");
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
