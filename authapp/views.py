@@ -22,6 +22,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            messages.success(request, 'Logged in  successfully')  # Add success message
             return redirect('home')  # Redirect to a home page or another URL
         else:
             print(f" OM:::>>> user password = {uname}, password = {upass}")
