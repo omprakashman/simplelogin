@@ -56,6 +56,8 @@ def change_password_view(request):
             update_session_auth_hash(request, request.user)  # Keep the user logged in after changing password
             messages.success(request, 'Password changed successfully')  # Add success message
             return redirect('home')  # Redirect to a home page or another URL
+        else :
+            messages.error(request, 'Incorrect current password')  # Add success message
     else:
         form = CustomPasswordChangeForm(user=request.user)
     return render(request, 'change_password.html', {'form': form})
