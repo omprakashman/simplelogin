@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: skyblue;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .error-container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: red;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .login-btn {
+            background-color: rgb(28, 180, 28);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px rgb(3, 77, 3); /* 3D effect */
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+        .login-btn:hover {
+            background-color: #2b6fb3;
+            color: white;
+            box-shadow: 0 6px #666;
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+        .login-btn:active {
+            box-shadow: 0 2px #666;
+            transform: translateY(2px); /* Pressed effect */
+        }
+        .login-btn-text {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow to text */
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 style="color: red;">ERROR 500  - Server not responding</h1>
+        <p>Sorry, something went wrong on our end. </p>
+        <br> <br> 
+        <a href="{% url 'login' %}" class="login-btn login-btn-text">Login again</a>
+        
+    </div>
+</body>
+</html>

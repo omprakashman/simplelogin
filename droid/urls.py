@@ -21,3 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authapp.urls')),  # Include your app's URLs
 ]
+
+# Error handling procedures
+handler404 = 'authapp.views.error_404_view'
+handler500 = 'authapp.views.error_500_view'

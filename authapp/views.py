@@ -32,7 +32,7 @@ def login_view(request):
 
 
 
-
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('login')  # Redirect to the login page or another URL
@@ -41,6 +41,12 @@ def logout_view(request):
 def home_view(request):
     return render(request, 'success.html')
 
-        # return HttpResponse("Welcome to the home page!")
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html', status=404)
+
+def error_500_view(request):
+    return render(request, '500.html', status=500)
 
 

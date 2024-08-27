@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_)68&_mm%pa3#b+@h*80-qd6^q(qujpdj2sj(%q^zcxrnkr225'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True# Changed from True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 STATIC_URL = '/static/'
@@ -33,6 +33,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "authapp/static",
 ]
+
 
 
 
