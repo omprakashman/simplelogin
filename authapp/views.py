@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-# from django.http import HttpResponse ## Remove this 
-# from django.contrib import auth, messages ## Remove this 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import CustomPasswordChangeForm
 from django.contrib import messages
+from .forms import CustomUserCreationForm  # Import your custom form
+from .models import UserProfile  # Import UserProfile
 
 
 def login_view(request):
@@ -40,11 +40,12 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
+    messages.success(request, 'You have been logged out of the system')  # Add success message
     return redirect('login')  # Redirect to the login page or another URL
 
 @login_required
 def home_view(request):
-    return render(request, 'success.html')
+     return render(request, 'success.html')
 
 
 @login_required
@@ -61,6 +62,28 @@ def change_password_view(request):
     else:
         form = CustomPasswordChangeForm(user=request.user)
     return render(request, 'change_password.html', {'form': form})
+
+# User Registration
+def signup_view(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            profile = UserProfile.objects.create(
+                user=user,
+                full_name=form.cleaned_data['full_name'],
+                email=form.cleaned_data['email'],
+                mobile_number=form.cleaned_data['mobile_number'],
+                address=form.cleaned_data['address']
+            )
+            messages.success(request, 'Account created successfully. You can now log in.')
+            return redirect('login')
+        else:
+            messages.error(request, 'There was an error with your registration. Please try again.')
+            return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 
 def error_404_view(request, exception):
