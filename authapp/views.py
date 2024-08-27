@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse
-from django.contrib import auth, messages
+# from django.http import HttpResponse ## Remove this 
+# from django.contrib import auth, messages ## Remove this 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from .forms import CustomPasswordChangeForm
 
 
 def login_view(request):
@@ -41,6 +44,18 @@ def logout_view(request):
 def home_view(request):
     return render(request, 'success.html')
 
+
+@login_required
+def change_password_view(request):
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Keep the user logged in after changing password
+            return redirect('home')  # Redirect to a home page or another URL
+    else:
+        form = CustomPasswordChangeForm(user=request.user)
+    return render(request, 'change_password.html', {'form': form})
 
 
 def error_404_view(request, exception):
