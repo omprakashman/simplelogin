@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 
 
 def login_view(request):
@@ -36,7 +37,7 @@ def logout_view(request):
     logout(request)
     return redirect('login')  # Redirect to the login page or another URL
 
-
+@login_required
 def home_view(request):
     return render(request, 'success.html')
 
