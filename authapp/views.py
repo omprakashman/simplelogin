@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import CustomPasswordChangeForm
+from django.contrib import messages
 
 
 def login_view(request):
@@ -50,8 +51,9 @@ def change_password_view(request):
     if request.method == 'POST':
         form = CustomPasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Keep the user logged in after changing password
+            form.save()
+            update_session_auth_hash(request, request.user)  # Keep the user logged in after changing password
+            messages.success(request, 'Password changed successfully')  # Add success message
             return redirect('home')  # Redirect to a home page or another URL
     else:
         form = CustomPasswordChangeForm(user=request.user)
