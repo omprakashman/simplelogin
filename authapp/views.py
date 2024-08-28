@@ -80,7 +80,7 @@ def signup_view(request):
             return redirect('login')
         else:
             messages.error(request, 'There was an error with your registration. Please try again.')
-            return redirect('login')
+            # return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})

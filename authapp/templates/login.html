@@ -1,166 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'authapp/base.html' %}
 
-{% load static %} <!-- This line is required to use the static template tag -->
+{% block title %}Login{% endblock %}
+{% load static %}
 
-<head>
-	<meta charset="UTF-8">
-	<title>Login</title>
-	<style>
-		body {
-			font-family: Verdana, sans-serif;
-			background-image: url("{% static 'images/backg.png' %}");
-			background-size: cover;
-			margin: 0;
-			padding: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			font-size: 12px; /* Set the font size here */
-			position: relative; /* Added to position the flicker */
-		}
-		.login-container {
-			background-color: rgb(197, 233, 245);
-			padding: 20px 30px;
-			border-radius: 8px;
-			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-			text-align: center;
-		}
-		h2 {
-			color: red;
-			margin-bottom: 20px;
-		}
-		.login-btn {
-			background-color: rgb(28, 180, 28);
-			color: white;
-			padding: 5px 20px;
-			border: none;
-			border-radius: 12px;
-			font-size: 16px;
-			cursor: pointer;
-			text-decoration: none;
-			box-shadow: 0 2px rgb(3, 77, 3); /* 3D effect */
-			transition: all 0.3s ease; /* Smooth transition */
-		}
-		.login-btn:hover {
-			background-color: lightgreen;
-			color: black;
-			box-shadow: 0 6px #666;
-			transform: translateY(-2px); /* Slight lift on hover */
-		}
-		.login-btn:active {
-			box-shadow: 0 2px #666;
-			transform: translateY(2px); /* Pressed effect */
-		}
-		.login-btn-text {
-			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow to text */
-		}
-		.flicker {
-			position: absolute;
-			top: 67%;
-			right: 84px;
-			width: 15px;
-			height: 15px;
-			background-color: rgb(25, 189, 25);
-			border-radius: 50%;
-			animation: flickerAnimation 2s infinite;
-		}
-		@keyframes flickerAnimation {
-			0%, 100% { opacity: 1; }
-			50% { opacity: 0.1; }
-		}
+{% block content %}
+<div class="login-container">
+	<!-- Adding messages here -->
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+			<li class="message {{ message.tags }}">
+				<div class="message-content">
+					<span class="message-icon">
+						{% if message.tags == 'success' %}
+							✔️
+						{% elif message.tags == 'error' %}
+							❌
+						{% elif message.tags == 'warning' %}
+							⚠️
+						{% elif message.tags == 'info' %}
+							ℹ️
+						{% endif %}
+					</span>
+					<span class="message-text">{{ message }}</span>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<!-- End: Adding messages here -->
 
-		/* Message styling */
-		.messages {
-			list-style-type: none;
-			padding: 0;
-			margin: 0;
-		}
-		.message {
-			margin: 10px 0;
-			padding: 15px;
-			border-radius: 8px;
-			display: flex;
-			align-items: center;
-			box-shadow: 0 10px 10px grey;
-		}
-		.message-content {
-			display: flex;
-			align-items: center;
-		}
-		.message-icon {
-			font-size: 24px;
-			margin-right: 10px;
-		}
-		.message-text {
-			font-size: 16px;
-			font-weight: bold;
-		}
-		.message.success {
-			background-color: whitesmoke;
-			color: black;
-			border-left: 10px solid #28a745;
-		}
-		.message.error {
-			background-color: whitesmoke;
-			color: black;
-			border-left: 10px solid red;
-		}
-		.message.warning {
-			background-color: #fff3cd;
-			color: #856404;
-			border-left: 5px solid #ffc107;
-		}
-		.message.info {
-			background-color: #d1ecf1;
-			color: #0c5460;
-			border-left: 5px solid #17a2b8;
-		}
-
-	</style>
-</head>
-<body>
-	<div class="login-container">
-		<!-- <h2 style="color: black;">LOGIN</h2> -->
-
-		<!-- Adding messages here -->
-		{% if messages %}
-		<ul class="messages">
-			{% for message in messages %}
-				<li class="message {{ message.tags }}">
-					<div class="message-content">
-						<span class="message-icon">
-							{% if message.tags == 'success' %}
-								✔️
-							{% elif message.tags == 'error' %}
-								❌
-							{% elif message.tags == 'warning' %}
-								⚠️
-							{% elif message.tags == 'info' %}
-								ℹ️
-							{% endif %}
-						</span>
-						<span class="message-text">{{ message }}</span>
-					</div>
-				</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-		<!-- End: Adding messages here -->
+	<h2 style="color: black; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 4px 4px 10px rgba(0, 0, 0, 0.2);">LOGIN</h2>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="login-btn login-btn-text">Login</button>
+		
+		<!-- User Registration -->
+		<a href="{% url 'signup' %}">Sign Up</a> <!-- Added Signup Link -->
+	</form>
+</div>
 
 
-		<h2 style="color: black; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 4px 4px 10px rgba(0, 0, 0, 0.2);">LOGIN</h2>
-		<form method="post">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit" class="login-btn login-btn-text">Login</button>
-			
-			<!-- USer Registartion -->
-			<a href="{% url 'signup' %}">Sign Up</a> <!-- Added Signup Link -->
-
-		</form>
-	</div>
-	<div class="flicker"></div> <!-- Added flicker element -->
-</body>
-</html>
+{% endblock %}

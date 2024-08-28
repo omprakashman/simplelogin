@@ -1,16 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-</head>
-<body>
-    <h2>Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
-    <a href="{% url 'login' %}">Back to Login</a>
-</body>
-</html>
+{% extends 'authapp/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+	<!-- Adding messages here -->
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li class="message {{ message.tags }}">
+			<div class="message-content">
+				<span class="message-icon">
+					{% if message.tags == 'success' %}
+					✔️
+					{% elif message.tags == 'error' %}
+					❌
+					{% elif message.tags == 'warning' %}
+					⚠️
+					{% elif message.tags == 'info' %}
+					ℹ️
+					{% endif %}
+				</span>
+				<span class="message-text">{{ message }}</span>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<!-- End: Adding messages here -->
+
+	<div class="text-container">
+		<h2 class="signup-title">SIGN UP</h2>
+		<form method="post">
+			{% csrf_token %}
+
+			<div class="form-group">
+				<label for="{{ form.username.id_for_label }}">Username</label>
+				{{ form.username }}
+				
+				<label for="{{ form.full_name.id_for_label }}">Full Name</label>
+				{{ form.full_name }}
+				
+				<label for="{{ form.email.id_for_label }}">Email</label>
+				{{ form.email }}
+				
+				<label for="{{ form.mobile_number.id_for_label }}">Mobile Number</label>
+				{{ form.mobile_number }}
+				
+				<label for="{{ form.address.id_for_label }}">Address</label>
+				{{ form.address }}
+				
+				<label for="{{ form.password1.id_for_label }}">Password</label>
+					{{ form.password1 }}
+					<small class="form-text text-muted">
+						Your password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number.
+					</small>
+					
+				<label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+					{{ form.password2 }}
+				
+			</div>
+			<button type="submit" class="update-button">Update </button>
+						<a href="{% url 'login' %}" class="gotologin-btn gotologin-btn-text">Go to Login</a>
+		</form>
+	</div>
+</div>
+
+<style>
+
+body {
+    background-color: skyblue; /* Set your desired background color here */
+}
+.hidden-fields {
+	display: none;
+}
+
+label {
+    font-size: 16px; /* Set your desired font size here */
+}
+
+
+	.update-button {
+    background-color: rgb(28, 180, 28);
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px rgb(3, 77, 3);
+    transition: all 0.3s ease;
+}
+
+.update-button:hover {
+    background-color: ghostwhite;
+    color: black;
+    box-shadow: 0 6px #666;
+    transform: translateY(-2px);
+}
+
+.update-button:active {
+    box-shadow: 0 2px green;
+    transform: translateY(2px);
+}
+
+.update-button-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/*   */
+.gotologin-btn {
+    background-color: rgb(117, 108, 245);
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px rgb(3, 77, 3);
+    transition: all 0.3s ease;
+}
+
+.gotologin-btn:hover {
+    background-color: ghostwhite;
+    color: black;
+    box-shadow: 0 6px #666;
+    transform: translateY(-2px);
+}
+
+.gotologin-btn:active {
+    box-shadow: 0 2px blue;
+    transform: translateY(2px);
+}
+
+.gotologin-btn-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+</style>
+{% endblock %}

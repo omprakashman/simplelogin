@@ -1,0 +1,207 @@
+body {
+    font-family: Verdana, sans-serif;
+    background-image: url("../images/backg.png"); 
+   background-color: skyblue;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 12px;
+    position: relative;
+}
+
+.login-container {
+    background-color: rgb(197, 233, 245);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.login-btn {
+    background-color: rgb(28, 180, 28);
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px rgb(3, 77, 3);
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: ghostwhite;
+    color: black;
+    box-shadow: 0 6px #666;
+    transform: translateY(-2px);
+}
+
+.login-btn:active {
+    box-shadow: 0 2px green;
+    transform: translateY(2px);
+}
+
+.login-btn-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.flicker {
+    position: absolute;
+    top: 67%;
+    right: 84px;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(25, 189, 25);
+    border-radius: 50%;
+    animation: flickerAnimation 2s infinite;
+}
+
+@keyframes flickerAnimation {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.1; }
+}
+
+/* Message styling */
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 10px grey;
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+}
+
+.message-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.message-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.message.success {
+    background-color: whitesmoke;
+    color: black;
+    border-left: 10px solid #28a745;
+}
+
+.message.error {
+    background-color: whitesmoke;
+    color: black;
+    border-left: 10px solid red;
+}
+
+.message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 5px solid #ffc107;
+}
+
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-left: 5px solid #17a2b8;
+}
+
+/* for signup.html */ 
+body {
+    background-color: blue; /* Set background color to blue */
+}
+.signup-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white; /* Ensure the form container has a white background */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* Adjust the height to be auto */
+    max-height: 90vh; /* Set a maximum height */
+ /*   overflow-y: auto; /* Add scroll if content exceeds max height */
+    line-height: 1;
+}
+.signup-title {
+    text-align: center; /* Center align the title */
+    color: black;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 4px 4px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1;
+}
+.form-group {
+    display: flex;
+    flex-direction: row; /* Align items in a row */
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    line-height: 1;
+    width: 100%; /* Ensure form groups take full width */
+}
+.form-group label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px; /* Reduce label font size to 10px */
+    line-height: 1;
+    
+}
+.form-group input {
+    padding: 0px;
+    font-size: 14px;
+    width: 3%; /* Ensure input boxes take full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    line-height: 1;
+    width: 100%; /* Ensure form groups take full width */
+    margin-bottom: 2rem; /* Add margin between form groups */
+}
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(20, 8, 14);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.signup-btn:hover { 
+    background-color: blue;
+}
+.messages {
+    list-style-type: none;
+    padding: 0;
+}
+.message {
+    margin-bottom: 10px;
+}
+.message-content {
+    display: flex;
+    align-items: center;
+}
+.message-icon {
+    margin-right: 10px;
+}
+.text-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
