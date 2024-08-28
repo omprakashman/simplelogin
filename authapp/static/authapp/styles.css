@@ -132,7 +132,7 @@ body {
 }
 .signup-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     margin: 0 auto;
     background-color: white; /* Ensure the form container has a white background */
     padding: 10px;
@@ -140,8 +140,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: auto; /* Adjust the height to be auto */
     max-height: 90vh; /* Set a maximum height */
- /*   overflow-y: auto; /* Add scroll if content exceeds max height */
-    line-height: 1;
+
 }
 .signup-title {
     text-align: center; /* Center align the title */
