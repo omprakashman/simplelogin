@@ -35,29 +35,19 @@
 			{% csrf_token %}
 
 			<div class="form-group">
-				<label for="{{ form.username.id_for_label }}">Username</label>
-				{{ form.username }}
-				
-				<label for="{{ form.full_name.id_for_label }}">Full Name</label>
-				{{ form.full_name }}
-				
-				<label for="{{ form.email.id_for_label }}">Email</label>
-				{{ form.email }}
-				
-				<label for="{{ form.mobile_number.id_for_label }}">Mobile Number</label>
-				{{ form.mobile_number }}
-				
-				<label for="{{ form.address.id_for_label }}">Address</label>
-				{{ form.address }}
-				
-				<label for="{{ form.password1.id_for_label }}">Password</label>
-					{{ form.password1 }}
-					<small class="form-text text-muted">
-						Your password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number.
-					</small>
-					
-				<label for="{{ form.password2.id_for_label }}">Confirm Password</label>
-					{{ form.password2 }}
+				<label for="{{ form.username.id_for_label }}" style="font-weight: bold;">User ID</label>
+                {{ form.username }}
+                
+                           
+                <label for="{{ form.password1.id_for_label }}" style="font-weight: bold;">Password</label>
+                    {{ form.password1 }} 
+                    <small class="form-text text-muted">
+                        Your password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number.
+                    </small> <br>
+                    
+                <label for="{{ form.password2.id_for_label }}" style="font-weight: bold;">Confirm Password</label>
+                    {{ form.password2 }}
+                
 				
 			</div>
 			<button type="submit" class="update-button">Update </button>

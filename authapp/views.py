@@ -67,8 +67,11 @@ def change_password_view(request):
 def signup_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        uname = request.POST.get('username')
+        
         if form.is_valid():
             user = form.save()
+            '''
             profile = UserProfile.objects.create(
                 user=user,
                 full_name=form.cleaned_data['full_name'],
@@ -76,7 +79,8 @@ def signup_view(request):
                 mobile_number=form.cleaned_data['mobile_number'],
                 address=form.cleaned_data['address']
             )
-            messages.success(request, 'Account created successfully. You can now log in.')
+            '''
+            messages.success(request, f'User id [ {uname} ] created successfully !!. Pl. log in, to activate your user id with details')
             return redirect('login')
         else:
             messages.error(request, 'There was an error with your registration. Please try again.')
