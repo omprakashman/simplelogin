@@ -37,7 +37,10 @@
 			<div class="form-group">
 				<label for="{{ form.username.id_for_label }}" style="font-weight: bold;">User ID</label>
                 {{ form.username }}
-                
+                <small class="form-text text-muted">
+                    The User ID should me max 8 characters long and only Alphabets are allowed
+                </small>                                
+
                            
                 <label for="{{ form.password1.id_for_label }}" style="font-weight: bold;">Password</label>
                     {{ form.password1 }} 
