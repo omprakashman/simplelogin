@@ -25,7 +25,7 @@ def login_view(request):
             messages.success(request, 'Logged in  successfully')  # Add success message
             return redirect('home')  # Redirect to a home page or another URL
         else:
-            print(f" OM:::>>> user password = {uname}, password = {upass}")
+            messages.error(request, f'The username {uname} and Password *** are incorrect')  # Add success message
             return render(request, 'error.html', {
                 'user': uname,
                 'password': upass,

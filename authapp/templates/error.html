@@ -55,13 +55,83 @@
         .login-btn-text {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow to text */
         }
+/* Messages */
+.messages {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+		.message {
+			margin: 10px 0;
+			padding: 15px;
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			box-shadow: 0 10px 10px grey;
+		}
+		.message-content {
+			display: flex;
+			align-items: center;
+		}
+		.message-icon {
+			font-size: 24px;
+			margin-right: 10px;
+		}
+		.message-text {
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.message.success {
+			background-color: whitesmoke;
+			color: black;
+			border-left: 10px solid #28a745;
+		}
+		.message.error {
+			background-color: whitesmoke;
+			color: black;
+			border-left: 10px solid red;
+		}
+		.message.warning {
+			background-color: #fff3cd;
+			color: #856404;
+			border-left: 5px solid #ffc107;
+		}
+		.message.info {
+			background-color: #d1ecf1;
+			color: #0c5460;
+			border-left: 5px solid #17a2b8;
+		}
+/* End Messages */
+
     </style>
 </head>
 <body>
     <div class="error-container">
-        <h2>Incorrect login and password</h2>
-        <!-- <p>Your User <strong>{{ user }}</strong> and Password <strong>{{ password }}</strong> are incorrect.</p> -->
-        <p>Your User <strong>{{ user }}</strong> and Password <strong>***</strong> are incorrect.</p>
+        <!-- <h2>Incorrect login and password</h2> -->
+        		<!-- Adding messages here -->
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li class="message {{ message.tags }}">
+					<div class="message-content">
+						<span class="message-icon">
+							{% if message.tags == 'success' %}
+								✔️
+							{% elif message.tags == 'error' %}
+								❌
+							{% elif message.tags == 'warning' %}
+								⚠️
+							{% elif message.tags == 'info' %}
+								ℹ️
+							{% endif %}
+						</span>
+						<span class="message-text">{{ message }}</span>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<!-- End: Adding messages here -->
         <br> <br> 
         <a href="{% url 'login' %}" class="login-btn login-btn-text">Login again</a>
         
